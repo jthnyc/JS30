@@ -60,9 +60,16 @@
         "An Old Dog",
       ];
 
-      const sorted = bands.sort((a, b) => {
-        // if first word is "the" or "a",
-      });
+      function strip(bandName) {
+        // use regex, replace with nothing and then trim
+        return bandName.replace(/^(a |the |an )/i, "").trim();
+      }
+
+      const sorted = bands.sort((a, b) => (strip(a) > strip(b) ? 1 : -1));
+
+      document.querySelector("#bands").innerHTML = sorted
+        .map((band) => `<li>${band}</li>`)
+        .join("");
     </script>
   </body>
 </html>
